@@ -145,6 +145,8 @@
 }
 
 \def\発行日#1{\def\@発行日{#1}}
+\def\回覧#1{\def\@回覧{#1}}
+\def\回覧true{true}
 \def\文書宛先#1{\def\@文書宛先{#1}}
 \def\文書元#1{\def\@文書元{#1}}
 \def\表題#1{\def\@表題{#1}}
@@ -155,10 +157,13 @@
 \def\ROOT@Y{32}				% 1ページ目の原点
 \begin{picture}(\width,\height)
 
+ \ifx\@回覧\回覧true{
  \SetPos(-3,-19) {
  \Put(1,10){\makebox(25,5)[t]{\Huge 回覧}}
  \ThickBox(28,18)
  }
+ }\else\empty\fi
+ 
 
  \SetPos(0, 2) {
    \Put(138,0){
@@ -176,28 +181,33 @@
 
  \SetPos(0, 18) {
  \Put(138,0) {
- \makebox(25,3)[r]{
-   \large \@文書元
+ \makebox(10,3)[]{
+\begin{minipage}[t]{40mm}
+\begin{flushright}
+   \large \@文書元 
+\end{flushright}
+\end{minipage}
  }
  }
  }
 
  \SetPos(0, 38) {
  \Put(0,0) {
- \makebox(148,3)[c]{ \huge \@表題}
+ \makebox(148,3)[c]{ \Huge \underline{\@表題}}
  }
  }
 
  \SetPos(0, 180) {
  \Put(0,0){
  \makebox(158,124)[t]{ \begin{minipage}[t]{158mm}
-                       \large \@本文
+                       \Large \@本文
                       \end{minipage}
  }
  }}
 
+ \ifx\@回覧\回覧true{
  \SetPos(0, 185) {
- \Put(17,0){
+ \Put(17,1){
  $\xrightarrow{　　　　　　　　　　　}$
  }
  \Put(0,2){\line(1,0){160}}
@@ -216,6 +226,7 @@
  \Put(144,26){\line(0,1){24}}
  \Put(0,7){\makebox(16,4)[c]{班　長}}
  }
+ }\else\empty\fi
  
 \end{picture}
 }

@@ -1,5 +1,5 @@
-PDF = mizosoji_orei.pdf atago_ofuda.pdf
-DVI = mizosoji_orei.dvi atago_ofuda.dvi
+PDF = mizosoji_orei.pdf atago_ofuda.pdf hancho_mtg6.pdf hancho_mtg7.pdf atago_orei.pdf general_assembly.pdf
+DVI = mizosoji_orei.dvi atago_ofuda.dvi atago_orei.dvi
 
 .SUFFIXES: .tex .dvi .pdf
 .PHONY: all clean
@@ -19,6 +19,11 @@ mizosoji_orei.dvi: mizosoji_orei.tex circular.sty
 atago_ofuda.pdf: atago_ofuda.dvi
 
 atago_ofuda.dvi: atago_ofuda.tex circular.sty
+
+hancho_mtg2.pdf: hancho_mtg2.dvi
+
+hancho_mtg2.dvi: hancho_mtg2.tex circular.sty
+
 
 clean:
 	rm -f $(DVI) $(PDF) *.aux *.log
